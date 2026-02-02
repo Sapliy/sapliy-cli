@@ -21,7 +21,7 @@ var createPaymentCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey := viper.GetString("api_key")
 		if apiKey == "" {
-			fmt.Println("Error: Not authenticated. Use 'fintech auth login'.")
+			fmt.Println("Error: Not authenticated. Use 'sapliy auth login'.")
 			os.Exit(1)
 		}
 

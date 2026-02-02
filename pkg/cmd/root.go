@@ -11,9 +11,9 @@ import (
 var cfgFile string
 
 var rootCmd = &cobra.Command{
-	Use:   "fintech",
-	Short: "Sapliy Fintech CLI",
-	Long:  `Sapliy Fintech Command Line Interface for managing payments, wallets, and more.`,
+	Use:   "sapliy",
+	Short: "Sapliy CLI",
+	Long:  `Sapliy Command Line Interface for managing payments, wallets, and more.`,
 }
 
 func Execute() {
@@ -25,7 +25,7 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.fintech.yaml)")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.sapliy.yaml)")
 }
 
 func initConfig() {
@@ -40,7 +40,7 @@ func initConfig() {
 
 		viper.AddConfigPath(home)
 		viper.SetConfigType("yaml")
-		viper.SetConfigName(".fintech")
+		viper.SetConfigName(".sapliy")
 	}
 
 	viper.AutomaticEnv()
