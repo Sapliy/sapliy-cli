@@ -29,11 +29,11 @@ var templatesListCmd = &cobra.Command{
 			Flows       int
 			Webhooks    int
 		}{
-			{"e-commerce", "Online store with checkout, payments, and order tracking", 5, 3},
-			{"saas-billing", "Subscription management with usage-based billing", 4, 2},
-			{"marketplace", "Multi-vendor marketplace with split payments", 6, 4},
-			{"fintech-basic", "Basic payment processing with fraud checks", 3, 2},
-			{"automation-hub", "Event-driven automation without payment processing", 2, 1},
+			{"e-commerce", "Complete e-commerce solution with checkout, payments, and order tracking", 3, 2},
+			{"saas-billing", "Subscription and usage-based billing for SaaS products", 2, 1},
+			{"marketplace", "Multi-vendor marketplace with escrow and fee management", 4, 3},
+			{"fintech-basic", "Basic payment processing with fraud checks", 2, 2},
+			{"automation-hub", "Event-driven automation without payment processing", 1, 1},
 		}
 
 		fmt.Println("📋 Available Zone Templates")
@@ -100,16 +100,16 @@ var templatesApplyCmd = &cobra.Command{
 		// Step 2: Display template info (actual template application would be done server-side)
 		fmt.Print("Configuring template... ")
 		templateFlows := map[string]int{
-			"e-commerce":     5,
-			"saas-billing":   4,
-			"marketplace":    6,
-			"fintech-basic":  3,
-			"automation-hub": 2,
-		}
-		templateWebhooks := map[string]int{
 			"e-commerce":     3,
 			"saas-billing":   2,
 			"marketplace":    4,
+			"fintech-basic":  2,
+			"automation-hub": 1,
+		}
+		templateWebhooks := map[string]int{
+			"e-commerce":     2,
+			"saas-billing":   1,
+			"marketplace":    3,
 			"fintech-basic":  2,
 			"automation-hub": 1,
 		}
@@ -174,17 +174,61 @@ var templatesShowCmd = &cobra.Command{
 				Flows: []string{
 					"subscription.created → Provision account + Welcome email",
 					"invoice.created → Process payment",
-					"usage.threshold → Notify customer",
-					"subscription.cancelled → Trigger offboarding flow",
 				},
 				Webhooks: []string{
 					"/webhooks/billing",
-					"/webhooks/usage",
 				},
 				Events: []string{
 					"subscription.created", "subscription.updated", "subscription.cancelled",
 					"invoice.created", "invoice.paid", "invoice.failed",
 					"usage.recorded", "usage.threshold",
+				},
+			},
+			"marketplace": {
+				Description: "Multi-vendor marketplace with escrow and fee management",
+				Flows: []string{
+					"payment.succeeded → Hold funds in escrow",
+					"order.delivered → Release payment to seller",
+					"payment.succeeded → Process platform fees",
+					"refund.requested → Handle refunds with approval",
+				},
+				Webhooks: []string{
+					"/webhooks/payments",
+					"/webhooks/shipping",
+					"/webhooks/vendors",
+				},
+				Events: []string{
+					"order.created", "order.paid", "order.shipped", "order.delivered",
+					"payment.succeeded", "payment.failed", "refund.requested", "refund.completed",
+					"vendor.registered", "vendor.approved", "vendor.payout",
+					"dispute.opened", "dispute.resolved",
+				},
+			},
+			"fintech-basic": {
+				Description: "Basic payment processing with fraud checks",
+				Flows: []string{
+					"payment.created → Fraud check for high-value transactions",
+					"payment.created → High-value payment approval workflow",
+				},
+				Webhooks: []string{
+					"/webhooks/payments",
+					"/webhooks/fraud",
+				},
+				Events: []string{
+					"payment.created", "payment.succeeded", "payment.failed", "payment.disputed",
+					"fraud.detected", "fraud.cleared",
+				},
+			},
+			"automation-hub": {
+				Description: "Event-driven automation without payment processing",
+				Flows: []string{
+					"daily schedule → Generate reports and send notifications",
+				},
+				Webhooks: []string{
+					"/webhooks/external",
+				},
+				Events: []string{
+					"automation.triggered", "automation.completed", "automation.failed",
 				},
 			},
 		}
