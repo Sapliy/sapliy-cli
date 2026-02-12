@@ -12,8 +12,9 @@ var cfgFile string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "sapliy",
-	Short: "Sapliy Fintech Ecosystem CLI",
+	Use:     "sapliy",
+	Version: "1.0.0",
+	Short:   "Sapliy Fintech Ecosystem CLI",
 	Long: `Sapliy CLI is the official command line interface for the Sapliy Fintech Ecosystem.
 It allows you to manage automation zones, flows, and interact with the event bus.`,
 }

@@ -25,6 +25,11 @@ brew install sapliy/tap/sapliy
 curl -L https://github.com/sapliy/sapliy-cli/releases/download/latest/sapliy-$(uname -s)-$(uname -m) -o sapliy
 chmod +x sapliy
 sudo mv sapliy /usr/local/bin/
+
+# Local Installation (from source)
+# If you have the repository cloned locally:
+make build
+sudo make install
 ```
 
 ### From Source
