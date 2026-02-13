@@ -65,4 +65,11 @@ func initConfig() {
 			fmt.Println("Using config file:", viper.ConfigFileUsed())
 		}
 	}
+
+	if viper.GetBool("verbose") {
+		fmt.Printf("DEBUG: api_key='%s', api_url='%s', org_id='%s'\n",
+			viper.GetString("api_key"),
+			viper.GetString("api_url"),
+			viper.GetString("org_id"))
+	}
 }
