@@ -54,6 +54,12 @@ func initConfig() {
 	viper.SetEnvPrefix("SAPLIY")
 	viper.AutomaticEnv()
 
+	// Explicitly bind environment variables
+	viper.BindEnv("api_key", "SAPLIY_API_KEY")
+	viper.BindEnv("api_url", "SAPLIY_API_URL")
+	viper.BindEnv("org_id", "SAPLIY_ORG_ID")
+	viper.BindEnv("current_zone", "SAPLIY_ZONE")
+
 	if err := viper.ReadInConfig(); err == nil {
 		if viper.GetBool("verbose") {
 			fmt.Println("Using config file:", viper.ConfigFileUsed())
