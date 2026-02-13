@@ -3,6 +3,7 @@ module github.com/sapliy/sapliy-cli
 go 1.25.6
 
 require (
+	github.com/fatih/color v1.18.0
 	github.com/gorilla/websocket v1.5.3
 	github.com/sapliy/fintech-sdk-go v0.0.0-20260201000650-9f499b9bde8b
 	github.com/spf13/cobra v1.10.2
@@ -13,6 +14,8 @@ require (
 	github.com/fsnotify/fsnotify v1.9.0 // indirect
 	github.com/go-viper/mapstructure/v2 v2.4.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
+	github.com/mattn/go-colorable v0.1.13 // indirect
+	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/pelletier/go-toml/v2 v2.2.4 // indirect
 	github.com/sagikazarmark/locafero v0.11.0 // indirect
 	github.com/sourcegraph/conc v0.3.1-0.20240121214520-5f936abd7ae8 // indirect
